@@ -41,3 +41,6 @@ nav li {
 nav a {
     text-decoration: none;
 }
+.custom-navbar-color {
+    background-color: #a8bff1 !important; /* Deep blue color */
+}

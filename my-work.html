@@ -1,27 +1,52 @@
-<section id="my-work">
-    <h2>My Work</h2>
-    <p>This is a section about my work. You can see more on my <a href="https://github.com/McBoatright">GitHub profile</a>.</p>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Work</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">My Work</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="skills.html">Skills</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<section id="download-instructions">
-    <h1><a href="https://github.com/McBoatright/electron-ivy-lee-method/releases" target="_blank">Download My App</a></h1>
-    <h2>Instructions for Downloading</h2>
-    <p>Right now this app is only available for Linux. You will have to clone the repository if you want to use it on a different OS. <a href="https://github.com/McBoatright/electron-ivy-lee-method.git" target="_blank"> Clone repository.</a></p>
-    <ol>
-        <li>Download the `.AppImage` file.</li>
-        <li>Open a terminal.</li>
-        <li>Navigate to the directory where you downloaded the `.AppImage` file. For example, if you downloaded the file to your `Downloads` directory, you can use the command `cd ~/Downloads`.</li>
-        <li>Add execute permissions to the `.AppImage` file with the command `chmod +x electron-ivy-lee-method-1.0.0..AppImage`.</li>
-        <li>Now, you can run the `.AppImage` file by double-clicking it in your file manager. Depending on your desktop environment you may only be able to open the app with it in the file manager and not on the taskbar or desktop.</li>
-    </ol>
-    <p>This is the first release of this Electron application. It's a to do list in the format of The Ivy Lee Method. When you download and run the app it will explain what The Ivy Lee Method is and how to use it. Its a great way to stay productive. Below are a list of the features the app provides.</p>
-    <ul>
-        <li>Feature 1: A date box, to add the next days date.</li>
-        <li>Feature 2: A box to add tasks.</li>
-        <li>Feature 3: Delete button next to the written task and and error will occur if more than 6 tasks are written.</li>
-        <li>Feature 4: Add notes box.</li>
-        <li>Feature 5: A delete button next to the written note.</li>
-        <li>Feature 6: A pop up window that gives instructions on how to use the app.</li>
-    </ul>
-    <p>Please download the .AppImage file to install the application on your Linux system.</p>
-</section>
+    <!-- Page content -->
+    <div class="container mt-5">
+        <section id="my-work">
+            <h2 class="mb-3">My Work</h2>
+            <p>This is a section about my work. You can see more on my <a href="https://github.com/McBoatright" class="text-primary">GitHub profile</a>.</p>
+        </section>
+
+        <section id="download-instructions" class="mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title"><a href="https://github.com/McBoatright/electron-ivy-lee-method/releases" target="_blank" class="btn btn-primary">Download My App</a></h1>                    
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

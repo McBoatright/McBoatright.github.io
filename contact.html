@@ -2,19 +2,43 @@
 <html lang="en">
 <head>
     <title>Contact</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">About Me</a></li>
-            <li><a href="index.html">My Work</a></li>
-            <li><a href="index.html">Skills</a></li>
-        </ul>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Contact Page</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">About Me</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">My Work</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Skills</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
-    <h1>Contact Me</h1>
-    <p>If you want to contact me, just click on the button below.</p>
-    <button onclick="location.href='mailto:michaelboatright@pm.me'">Contact Me</button>
+    <!-- Page Content -->
+    <div class="container mt-5">
+        <h1>Contact Me</h1>
+        <p>If you want to contact me, just click on the button below.</p>
+        <!-- Bootstrap Button -->
+        <button type="button" class="btn btn-primary" onclick="location.href='mailto:michaelboatright@pm.me'">Contact Me</button>
+    </div>
+
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
