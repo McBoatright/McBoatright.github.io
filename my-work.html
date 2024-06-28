@@ -1,10 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Work</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; }
+        #timer { font-size: 100px; margin: 20px; color: red; font-family: 'Courier New', Courier, monospace; }
+        .button-container { display: flex; justify-content: center; }
+        button { margin: 5px; padding: 5px; font-size: 16px; }
+        .counters-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Adjust the gap between counters as needed */
+        }
+        #sessionCounter, #cycleCounter { font-size: 50px; color: green; font-family: 'Georgia', serif; }
+        #statusText { font-size: 50px; color: green; display: none; } /* Customize Focus/Break text */
+        #pomodorosLabel, #sessionsLabel {
+            font-size: 30px; /* Example size, adjust as needed */
+            color: #df0a0a; /* Example color, black. Change as desired */
+            font-family: 'Arial', sans-serif; /* Example font, change as desired */
+        }
+        .counter-container {
+            text-align: center; /* Center the text */
+            margin: 10px; /* Optional: Add some space around each container */
+        }
+    </style>
 </head>
 <body>
     <!-- Bootstrap Navigation Bar -->
@@ -42,11 +66,124 @@
                 </div>
             </div>
         </section>
+
+        <!-- Study Timer Section -->
+        <div class="counters-container">
+            <div class="counter-container">
+                <div id="pomodorosLabel">Pomodoros</div>
+                <div id="sessionCounter">0/4</div>
+            </div>
+            <div class="counter-container">
+                <div id="sessionsLabel">Sessions</div>
+                <div id="cycleCounter">0/3</div>
+            </div>
+        </div>
+        <div id="timer">25:00</div>
+        <div id="statusText"></div>
+        <div class="button-container">
+            <button id="startStudy">Focus</button>
+            <button id="startShortBreak">Short Break</button>
+            <button id="startLongBreak">Long Break</button>
+            <button id="stopTimer" style="display:none;">Stop Timer</button>
+            <button id="stopAlarm" style="display:none;">Stop Alarm</button>
+        </div>
+        <audio id="alarmSound" src="alarm.wav"></audio>
     </div>
 
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Study Timer Script -->
+    <script>
+        const studyDuration = 25 * 60;
+        const shortBreakDuration = 5 * 60;
+        const longBreakDuration = 15 * 60;
+        let countdown;
+        let timeLeft = studyDuration;
+        let studySessionCounter = 0;
+        let cycleCounter = 0;
+        
+        function updateTimerDisplay(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            document.getElementById('timer').textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+        }
+        
+        function updateSessionCounter() {
+            if (studySessionCounter < 4) {
+                studySessionCounter++;
+                document.getElementById('sessionCounter').textContent = `${studySessionCounter}/4`;
+            } else {
+                studySessionCounter = 0; // Reset for a new cycle
+                cycleCounter++;
+                document.getElementById('sessionCounter').textContent = `0/4`;
+                document.getElementById('cycleCounter').textContent = `${cycleCounter}/3`;
+            }
+        }
+        
+        function startTimer(duration) {
+            let statusText = document.getElementById('statusText');
+            if (duration === studyDuration) {
+                statusText.textContent = 'Focus';
+                updateSessionCounter();
+            } else {
+                statusText.textContent = 'Break';
+            }
+            statusText.style.display = 'block'; // Show the status text
+
+            document.querySelector('.button-container').style.display = 'none';
+            document.getElementById('stopTimer').style.display = 'block'; // Show Stop Timer button
+
+            clearInterval(countdown);
+            let time = duration;
+            updateTimerDisplay(time);
+            countdown = setInterval(() => {
+                time--;
+                updateTimerDisplay(time);
+                if (time <= 0) {
+                    clearInterval(countdown);
+                    document.getElementById('alarmSound').play();
+                    document.getElementById('stopAlarm').style.display = 'block';
+                    document.getElementById('stopTimer').style.display = 'none'; // Hide Stop Timer button
+                    statusText.style.display = 'none'; // Hide the status text
+                }
+            }, 1000);
+        }
+        
+        document.getElementById('startStudy').addEventListener('click', () => startTimer(studyDuration));
+        document.getElementById('startShortBreak').addEventListener('click', () => startTimer(shortBreakDuration));
+        document.getElementById('startLongBreak').addEventListener('click', () => startTimer(longBreakDuration));
+        
+        document.getElementById('stopTimer').addEventListener('click', () => {
+            clearInterval(countdown);
+            document.querySelector('.button-container').style.display = 'flex'; // Show all buttons
+            document.getElementById('stopTimer').style.display = 'none'; // Hide Stop Timer button
+            document.getElementById('statusText').style.display = 'none'; // Hide the status text
+            updateTimerDisplay(studyDuration); // Reset timer display
+        });
+
+        document.getElementById('stopAlarm').addEventListener('click', () => {
+            document.getElementById('alarmSound').pause();
+            document.getElementById('alarmSound').currentTime = 0;
+            document.getElementById('stopAlarm').style.display = 'none';
+        });
+
+        document.body.addEventListener('click', (event) => {
+            if (!event.target.matches('button')) {
+                const buttonContainer = document.querySelector('.button-container');
+                if (buttonContainer.style.display === 'none' || buttonContainer.style.display === '') {
+                    buttonContainer.style.display = 'flex'; // Show all buttons
+                }
+            }
+        });
+
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the body click event from being triggered
+            });
+        });
+    </script>
 </body>
 </html>
