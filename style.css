@@ -44,3 +44,39 @@ nav a {
 .custom-navbar-color {
     background-color: #a8bff1 !important; /* Deep blue color */
 }
+
+#timer {
+    color: red; /* Change color */
+    font-family: Arial, sans-serif; /* Change font */
+    font-size: 50px;
+}
+#studySessionCounter, #cycleCounter {
+    color: green; /* Change color */
+    font-family: 'Times New Roman', serif; /* Change font */
+    font-size: 25px; /* Change font size */
+}
+
+#startStudy {
+    background-color: #4CAF50; /* Green */
+    color: white !important;
+}
+
+#startShortBreak {
+    background-color: #4CAF50; /* Blue */
+    color: white !important;
+}
+
+#startLongBreak {
+    background-color: #4CAF50; /* Amber */
+    color: white !important;
+}
+
+#stopTimer {
+    background-color: #4CAF50; /* Red */
+    color: white !important;
+}
+
+#stopAlarm {
+    background-color: #4CAF50; /* Grey */
+    color: white !important;
+}

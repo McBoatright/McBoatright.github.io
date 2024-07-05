@@ -4,207 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OBS Pomodoro Timer</title>
-    <!-- Include Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-            body { font-family: Arial, sans-serif; }
-    #timer { font-size: 100px; margin: 20px; color: red; font-family: 'Courier New', Courier, monospace; }
-    .button-container { display: flex; justify-content: center; }
-    button { margin: 5px; padding: 5px; font-size: 16px; }
-    .counters-container {
-        display: flex;
-        justify-content: center;
-        gap: 50px; /* Adjust the gap between counters as needed */
-    }
-    #sessionCounter, #cycleCounter { font-size: 50px; color: green; font-family: 'Georgia', serif; }
-    #statusText { font-size: 50px; color: green; display: none; } /* Customize Focus/Break text */
-    #pomodorosLabel, #sessionsLabel {
-        font-size: 30px; /* Example size, adjust as needed */
-        color: #df0a0a; /* Example color, black. Change as desired */
-        font-family: 'Arial', sans-serif; /* Example font, change as desired */
-    }
-    .counter-container {
-        text-align: center; /* Center the text */
-        margin: 10px; /* Optional: Add some space around each container */
-    }
-    </style>
 </head>
 <body>
-    <!-- Bootstrap Navigation Bar -->
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBS Pomodoro Timer</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <style>
-        /* Your CSS styles */
-    </style>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light custom-navbar-color">
-        <a class="navbar-brand" href="#">Timer</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Brand</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">About Me</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="index.html">Home</a>
+                <a class="nav-item nav-link" href="contact.html">Contact</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Work
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="download-my-apps.html">Download My Apps</a>
+                        <a class="dropdown-item" href="obs-pomodoro-timer.html">OBS Pomodoro Timer</a>
+                        <a class="dropdown-item" href="#">Project 3</a>
+                    </div>
                 </li>
-                <!-- Removed My Work Dropdown -->
-                <li class="nav-item">
-                    <a class="nav-link" href="download-my-apps.html">Download My Apps</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="obs-pomodoro-timer.html">OBS Pomodoro Timer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html#skills">Skills</a>
-                </li>
-            </ul>
+            </div>
         </div>
     </nav>
-    <!-- Page Content -->
+
+    <!-- Timer and Controls -->
     <div class="container mt-5">
-        <h1>Pomodoro Timer</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <div id="timer" class="display-4">25:00</div>
+                <div id="statusText" class="mb-3"></div>
+                <div id="studySessionCounter" class="mb-2">Pomodoros: 0</div>
+                <div id="cycleCounter" class="mb-3">Completed Sessions: 0</div>
+                <div class="button-container">
+                    <button id="startStudy" class="btn btn-primary">Focus</button>
+                    <button id="startShortBreak" class="btn btn-info">Short Break</button>
+                    <button id="startLongBreak" class="btn btn-warning">Long Break</button>
+                    <button id="stopTimer" class="btn btn-danger" style="display:none;">Stop Timer</button>
+                    <button id="stopAlarm" class="btn btn-secondary" style="display:none;">Stop Alarm</button>
+                </div>
+                <audio id="alarmSound" src="alarm.wav"></audio>
+            </div>
+        </div>
     </div>
-
-    
-    <div class="counters-container">
-        <!-- Updated HTML structure -->
-        <div class="counter-container">
-            <div id="pomodorosLabel">Pomodoros</div>
-            <div id="sessionCounter">0/4</div>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2>About the Pomodoro Timer</h2>
+                <p>This Pomodoro Timer helps you manage your time more effectively by dividing it into focus sessions and breaks. Start a 25-minute focus session by clicking the 'Focus' button. After each session, take a short break by clicking the 'Short Break' button, or a long break after four focus sessions by clicking the 'Long Break' button. The timer tracks the number of focus sessions and completed cycles to help you maintain a balanced work-rest schedule.</p>
+            </div>
         </div>
-        <div class="counter-container">
-            <div id="sessionsLabel">Sessions</div>
-            <div id="cycleCounter">0/3</div>
-        </div>
-      </div>
-      <div id="timer">25:00</div>
-      <div id="statusText"></div> <!-- Moved here to be under the timer -->
-      <div class="button-container">
-          <button id="startStudy">Focus</button>
-          <button id="startShortBreak">Short Break</button>
-          <button id="startLongBreak">Long Break</button>
-          <button id="stopTimer" style="display:none;">Stop Timer</button>
-          <button id="stopAlarm" style="display:none;">Stop Alarm</button>
-      </div>
-      <audio id="alarmSound" src="alarm.wav"></audio>
-      <!-- JavaScript remains unchanged -->
-    </body>
-    </html>
-    
-    <script>
-        const studyDuration = 25 * 60;
-        const shortBreakDuration = 5 * 60;
-        const longBreakDuration = 15 * 60;
-        let countdown;
-        let timeLeft = studyDuration;
-        let studySessionCounter = 0;
-        let cycleCounter = 0;
-        
-        function updateTimerDisplay(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            document.getElementById('timer').textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-        }
-        
-        function updateSessionCounter() {
-            if (studySessionCounter < 4) {
-                studySessionCounter++;
-                document.getElementById('sessionCounter').textContent = `${studySessionCounter}/4`;
-            } else {
-                studySessionCounter = 0; // Reset for a new cycle
-                cycleCounter++;
-                document.getElementById('sessionCounter').textContent = `0/4`;
-                document.getElementById('cycleCounter').textContent = `${cycleCounter}/3`;
-            }
-        }
-        
-        function updateCycleCounter() {
-            if (cycleCounter < 3) {
-                cycleCounter++;
-            } else {
-                cycleCounter = 0;
-            }
-            document.getElementById('cycleCounter').textContent = `${cycleCounter}/3`;
-        }
-        
-        function startTimer(duration) {
-            let statusText = document.getElementById('statusText');
-            if (duration === studyDuration) {
-                statusText.textContent = 'Focus';
-                updateSessionCounter();
-            } else {
-                statusText.textContent = 'Break';
-            }
-            statusText.style.display = 'block'; // Show the status text
-    
-            document.querySelector('.button-container').style.display = 'none';
-            document.getElementById('stopTimer').style.display = 'block'; // Show Stop Timer button
-    
-            clearInterval(countdown);
-            let time = duration;
-            updateTimerDisplay(time);
-            countdown = setInterval(() => {
-                time--;
-                updateTimerDisplay(time);
-                if (time <= 0) {
-                    clearInterval(countdown);
-                    document.getElementById('alarmSound').play();
-                    document.getElementById('stopAlarm').style.display = 'block';
-                    document.getElementById('stopTimer').style.display = 'none'; // Hide Stop Timer button
-                    statusText.style.display = 'none'; // Hide the status text
-                }
-            }, 1000);
-        }
-        
-        document.getElementById('startStudy').addEventListener('click', () => startTimer(studyDuration));
-        document.getElementById('startShortBreak').addEventListener('click', () => startTimer(shortBreakDuration));
-        document.getElementById('startLongBreak').addEventListener('click', () => startTimer(longBreakDuration));
-        
-        document.getElementById('stopTimer').addEventListener('click', () => {
-            clearInterval(countdown);
-            document.querySelector('.button-container').style.display = 'flex'; // Show all buttons
-            document.getElementById('stopTimer').style.display = 'none'; // Hide Stop Timer button
-            document.getElementById('statusText').style.display = 'none'; // Hide the status text
-            updateTimerDisplay(studyDuration); // Reset timer display
-        });
-    
-        document.getElementById('stopAlarm').addEventListener('click', () => {
-            document.getElementById('alarmSound').pause();
-            document.getElementById('alarmSound').currentTime = 0;
-            document.getElementById('stopAlarm').style.display = 'none';
-        });
-    
-        document.body.addEventListener('click', (event) => {
-            // Check if the target is not one of the buttons to avoid hiding them when clicked
-            if (!event.target.matches('button')) {
-                const buttonContainer = document.querySelector('.button-container');
-                if (buttonContainer.style.display === 'none' || buttonContainer.style.display === '') {
-                    buttonContainer.style.display = 'flex'; // Show all buttons
-                }
-            }
-        });
-    
-        // Modify existing button event listeners to stop propagation
-        document.querySelectorAll('button').forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.stopPropagation(); // Prevent the body click event from being triggered
-            });
-        });
-    </script>
-
-    <!-- Include Bootstrap JS and jQuery -->
+    </div>
+    <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+const studyDuration = 25 * 60;
+const shortBreakDuration = 5 * 60;
+const longBreakDuration = 15 * 60;
+let countdown;
+let timeLeft = studyDuration;
+let pomodoros = 0; // Counter for completed 25-minute timers
+let sessionCounter = 0; // Counter for every 4 completed 25-minute timers
 
+function updateTimerDisplay(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    document.getElementById('timer').textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
 
+function updateCountersDisplay() {
+    document.getElementById('pomodoros').textContent = `Pomodoros: ${studySessionCounter}`;
+    document.getElementById('sessionsCounter').textContent = `Completed Sessions: ${cycleCounter}`;
+}
+
+function toggleTimerButtons() {
+    const buttons = document.querySelectorAll('.button-container button');
+    buttons.forEach(button => {
+        if (button.id !== 'stopTimer' && button.id !== 'stopAlarm') { // Exclude stop buttons
+            button.style.display = button.style.display === 'none' ? 'inline-block' : 'none';
+        }
+    });
+}
+
+function startTimer(duration) {
+    clearInterval(countdown);
+    toggleTimerButtons(); // Hide timer buttons
+    let time = duration;
+    updateTimerDisplay(time);
+    countdown = setInterval(() => {
+        time--;
+        updateTimerDisplay(time);
+        if (time <= 0) {
+            clearInterval(countdown);
+            document.getElementById('alarmSound').play();
+            document.getElementById('stopAlarm').style.display = 'block';
+            if (duration === studyDuration) { // Check if it was a study session
+                pomodoros++;
+                if (pomodoros >= 4) {
+                    sessionCounter++;
+                    pomodoros = 0; // Reset study session counter
+                }
+                updateCountersDisplay(); // Update counters on the webpage
+            }
+        }
+    }, 1000);
+}
+
+document.getElementById('startStudy').addEventListener('click', () => startTimer(studyDuration));
+document.getElementById('startShortBreak').addEventListener('click', () => startTimer(shortBreakDuration));
+document.getElementById('startLongBreak').addEventListener('click', () => startTimer(longBreakDuration));
+
+document.getElementById('stopTimer').addEventListener('click', () => {
+    clearInterval(countdown);
+    document.getElementById('stopTimer').style.display = 'none';
+    updateTimerDisplay(studyDuration);
+    toggleTimerButtons(); // Show timer buttons again
+});
+
+document.getElementById('stopAlarm').addEventListener('click', () => {
+    document.getElementById('alarmSound').pause();
+    document.getElementById('alarmSound').currentTime = 0;
+    document.getElementById('stopAlarm').style.display = 'none';
+});
+
+document.body.addEventListener('click', () => {
+    toggleTimerButtons(); // Toggle visibility on body click
+});
+
+updateCountersDisplay();
+    </script>
 </body>
 </html>
