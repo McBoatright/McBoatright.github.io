@@ -80,3 +80,19 @@ nav a {
     background-color: #4CAF50; /* Grey */
     color: white !important;
 }
+
+#skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.skills-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#skills h2 {
+    text-align: center;
+}
